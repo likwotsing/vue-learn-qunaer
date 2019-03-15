@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="inputValue">
+    <button v-on:click="handleBtnClick">提交</button>
+    <ul>
+      <!-- <li v-for="item in list">{{item}}</li> -->
+      <todo-item v-bind:content="item" v-for="item in list"></todo-item>
+      <!-- <TodoItem v-bind:content="item" v-for="item in list"></TodoItem> 
+        这么写，组件就是todoitem，会提示没有注册
+      -->
+      <!-- 父组件里的item的值，传递给子组件的content -->
+    </ul>
+  </div>
+  <script>
+    // // 全局组件
+    // Vue.component('TodoItem', {
+    //   props: ['content'],   // 使用content接收父组件传递的值
+    //   template: '<li>{{content}}</li>'
+    // })
+    
+    // 局部注册，子组件就是一个对象
+    var TodoItem = {
+      props: ['content'],
+      template: '<li>{{content}}</li>'
+    }
+    var app = new Vue({
+      el: '#app',
+      components: {
+        TodoItem
+      },
+      data: {
+        inputValue: '',
+        list: []
+      },
+      methods: {
+        handleBtnClick: function() {
+          this.list.push(this.inputValue)
+          this.inputValue = ''
+        }
+      }
+    });
+  </script>
+</body>
+</html>
