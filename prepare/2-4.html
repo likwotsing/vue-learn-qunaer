@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input id="input" type="text" />
+      <button id="btn">提交</button>
+      <ul id="list">
+        
+      </ul>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.js"></script>
+    <script>
+      function Page() {
+
+      }
+      $.extend(Page.prototype, {
+        init: function() {
+          this.bindEvents()
+        },
+        bindEvents: function() {
+          var btn = $('#btn');
+          btn.on('click', $.proxy(this.handleBtnClick, this))
+          // btn.on('click', this.handleBtnClick)
+          // $.proxy(fn, context)，第一个参数是函数，返回一个新函数，这个新函数的上下文环境是context
+        },
+        handleBtnClick: function() {
+          var inputElem = $('#input')
+          var inputValue = inputElem.val()
+          var ulElem = $('#list')
+          ulElem.append('<li>' + inputValue + '</li>')
+          inputElem.val('')
+        }
+      })
+      var page = new Page()
+      page.init()
+    </script>
+  </body>
+</html>
