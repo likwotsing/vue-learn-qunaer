@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3-3模板语法</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div>{{name + " and bob"}}</div>
+    <div v-text="name + ' and bob'"></div>
+    <div v-html="name + ' and bob'"></div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: '<span>andy</span>'
+      }
+    })
+  </script>
+</body>
+</html>
