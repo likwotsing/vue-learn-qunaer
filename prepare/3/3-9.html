@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中的set方法</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div 
+      v-for="(item, index) of list"
+    >
+      {{item}} -- {{index}}
+    </div>
+    --------------------
+    <div
+      v-for="(item, key, index) of obj"
+    >
+      {{item}} -- {{key}} -- {{index}}
+    </div>
+  </div>
+  <script>
+    // 既可以使用Vue.set(),也可以使用vm.$set
+    
+    // list，更改：Vue.set(vm.list, 2, 300)；添加：Vue.set(vm.list, 6, 600)，中间未添加的项为empty，不是undefined
+
+    // obj,更改：Vue.set(vm.obj, 'name', 'bob')；添加：Vue.set(vm.obj, 'hobby', 'read')
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [100, 2, 33, 4],
+        obj: {
+          name: 'andy',
+          age: 18,
+          gender: 'male'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
