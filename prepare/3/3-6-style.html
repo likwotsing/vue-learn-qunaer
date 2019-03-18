@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3-6vue中的样式绑定-style</title>
+  <style>
+    /* .activated {
+      color: red;
+    }
+    .myFont {
+      font-size: 20px;
+    } */
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div
+      v-bind:style="{color: activeColor, fontSize: fontSize + 'px'}"
+      v-on:click="handleDivClick"
+    >Hello Vue</div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        activeColor: '',
+        fontSize: '16'
+      },
+      methods: {
+        handleDivClick: function() {
+          this.activeColor === 'red' ? this.activeColor = '' : this.activeColor = 'red';
+          this.fontSize === '16' ? this.fontSize = '30' : this.fontSize = '16';
+        }
+      }
+    })
+  </script>
+</body>
+</html>
