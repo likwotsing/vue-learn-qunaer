@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue中的条件渲染</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div v-if="username === usera">usera</div>
+    <div v-else-if="username === userb">userb</div>
+    <div v-else>userother</div>
+    <div v-if="show">v-if</div>
+    <div v-show="show">v-show</div>
+    <div v-if="show">
+        用户名：<input type="text" key="username">
+    </div>
+    <div v-else>
+        邮箱：<input type="email" key="useremail">
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: false,
+        username: 'a',
+        usera: 'a',
+        userb: 'b'
+      }
+    })
+  </script>
+</body>
+</html>
