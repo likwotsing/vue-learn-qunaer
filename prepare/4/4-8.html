@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4-8动态组件与v-once指令</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <component :is="type"></component>
+    <!-- <one v-if="type==='one'"></one>
+    <two v-if="type==='two'"></two> -->
+    <button @click="handleClick">按钮</button>
+  </div>
+  <script>
+    /**
+     * 1. 使用v-if改变组件显示与否，性能较低
+     * 2. 使用component标签，:is属性绑定的值必须是子组件名称，会自动判断显示哪个组件
+     * 3. 使用v-once指令，只渲染组件或元素一次，保存在内存中，优化性能。
+     * 
+    */
+    Vue.component('one', {
+      template: '<div v-once>one, content</div>'
+    });
+    Vue.component('two', {
+      template: '<div v-once>two, content</div>'
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        type: 'one'
+      },
+      methods: {
+        handleClick: function() {
+          this.type = (this.type === 'one' ? 'two' : 'one');
+        }
+      }
+    })
+  </script>
+</body>
+</html>
