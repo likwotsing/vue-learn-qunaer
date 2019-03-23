@@ -11,6 +11,7 @@
     <div id="app">
       <!-- 父组件通过:count的属性形式向子组件传值 -->
       <!-- @change接收子组件的事件 -->
+      <!-- :count传递的是表达式，count传递的是字符串 -->
       <counter :count="1" @change="handleChange"></counter>
       <counter :count="2" @change="handleChange"></counter>
       <div>{{total}}</div>
