@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4-5给组件绑定原生事件</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child1 @click="handleClick"></child1>
+    <child2 @click.native="handleClick">.navtive触发原生事件</child2>
+  </div>
+  <script>
+    // 1. 在子组件上绑定的事件是自定义事件
+    // 2. 在组件的元素上绑定的事件是原生事件
+    
+    // 方法1：
+    // 1. 先在子组件元素上绑定事件（原生事件）
+    // 2. $emit触发自定义事件，父组件监听自定义事件
+    // 3. 执行父组件监听到的事件
+
+    // 方法2：
+    // 1. 在子组件上添加.native修饰符
+    
+    Vue.component('child1', {
+      template: '<div @click="handleClick">child1, @click绑定的是自定义事件，通过$emit触发原生事件</div>',
+      methods: {
+        handleClick: function() {
+          alert('child click');
+          this.$emit('click');
+        }
+      }
+    });
+    Vue.component('child2', {
+      template: '<div>child2, .navtive触发原生事件</div>'
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      methods: {
+        handleClick: function() {
+          alert('parent click');
+        }
+      }
+    })
+  </script>
+</body>
+</html>
