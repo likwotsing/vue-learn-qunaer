@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>4-3组件参数校验与非props特性</title>
+    <script src="../vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <child :content="asdf12"></child>
+      <child></child>
+    </div>
+    <script>
+      // props属性：父组件传递，子组件接收，可以在子组件里直接使用。props特性不会显示在DOM的标签属性中
+      // 非props特性：父组件传递，子组件不接受，不能在子组件里使用。非props特性会显示在DOM的标签属性中
+      Vue.component('child', {
+        // props: ['content'],
+        // props: {
+        //   content: String
+        // },
+        // props: {
+        //   content: [String, Number]
+        // },
+        props: {
+          content: {
+            type: [String, Number],
+            required: false,
+            default: 'default value',
+            validator: function(val) {
+              // 返回false就会有warn警告
+              return val.length > 5;
+            }
+          }
+        },
+        template: '<div>{{content}}</div>'
+      });
+
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          asdf12: 'hello vue'
+        }
+      })
+    </script>
+  </body>
+</html>
