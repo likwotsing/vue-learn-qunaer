@@ -9,6 +9,8 @@
   </head>
   <body>
     <div id="app">
+      <!-- 父组件通过:count的属性形式向子组件传值 -->
+      <!-- @change接收子组件的事件 -->
       <counter :count="1" @change="handleChange"></counter>
       <counter :count="2" @change="handleChange"></counter>
       <div>{{total}}</div>
@@ -18,6 +20,7 @@
       // 1. 父组件向子组件传值，通过属性形式，子组件使用props接收，子组件不要修改父组件传递的值（单向数据流，因为传递的值可能是引用类型，其他子组件可能也使用了）。正确使用：在子组件data里克隆一份父组件传递的值，再使用。
       // 2. 子组件向父组件传值，通过事件的形式，可以携带参数。
       Vue.component('counter', {
+        // props接收父组件传递的值
         props: ['count'],
         data: function() {
           return {
@@ -30,7 +33,7 @@
         methods: {
           handleClick: function() {
             this.number = this.number + 2;
-            // 可以向父组件传递多个参数
+            // 子组件通过事件向父组件传值，可以向父组件传递多个参数
             this.$emit('change', 2, 100);
           }
         }
