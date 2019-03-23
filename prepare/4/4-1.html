@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4-1组件使用的细节</title>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tr is="row1"></tr>
+      <tr is="row1"></tr>
+    </table>
+    -----------
+    <br>
+    <select>
+      <option is="row2"></option>
+      <option is="row2"></option>
+    </select>
+    <br>
+    -------------
+    <ul>
+      <li is="row3"></li>
+    </ul>
+    -----------------
+    <div
+      ref="hello"
+      @click="handleClick"
+    >
+      hello world
+    </div>
+    -----------------
+    <counter ref="one" @change="handleChange"></counter>
+    <counter ref="two" @change="handleChange"></counter>
+    <div>{{total}}</div>
+  </div>
+
+  <script>
+  // 1. 组件里包括ul、li、ol、select、option、table、tr时，使用is来表明实际的组件名称
+  // 2. data：在子组件里，应该是一个function，而不能是对象
+  // 3. ref直接写在元素上时，获取的是DOM元素
+  // 4. ref写在子组件上，获取的就是子组件的引用
+
+  Vue.component('row1', {
+    data: function() {
+      return {
+        content: 'this is a row'
+      }
+    },
+    // data: {
+    //   content: 'this is a row'
+    // },
+    template: '<tr><td>{{content}}</td></tr>'
+  });
+  Vue.component('row2', {
+    data: function() {
+      return {
+        content: 'this is a option'
+      }
+    },
+    template: '<option>{{content}}</option>'
+  });
+  Vue.component('row3', {
+    data: function() {
+      return {
+        content: 'this is a li'
+      }
+    },
+    template: '<li>{{content}}</li>'
+  });
+
+  Vue.component('counter', {
+    data: function() {
+      return {
+        number: 0
+      }
+    },
+    template: '<div @click="handleClick">{{number}}</div>',
+    methods: {
+      handleClick: function() {
+        this.number ++;
+        // 子组件向父组件传值，发布订阅模式
+        this.$emit('change');
+      }
+    }
+  })
+
+
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      total: 0
+    },
+    methods: {
+      handleClick: function() {
+        console.log(this.$refs.hello);
+        alert(this.$refs.hello.innerHTML);
+      },
+      handleChange: function() {
+        this.total = this.$refs.one.number + this.$refs.two.number;
+      }
+    }
+  })
+  </script>
+</body>
+</html>
