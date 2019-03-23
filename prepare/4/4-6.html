@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>4-6在Vue中使用插槽slot</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child>
+      <h1 slot="header">headerdiv</h1>
+      <h1>匿名插槽</h1>
+      <div slot="footer">footerdiv</div>
+    </child>
+  </div>
+  <script>
+    /**
+     * 父组件通过属性的形式传递给子组件，子组件使用props接收数据，当数据比较多的时候，使用slot很方便
+     * 具名插槽、匿名插槽
+     * 
+    */
+    Vue.component('child', {
+      template: `<div>
+          <slot name="header">
+            default slot  
+          </slot>
+          <div>child-content</div>
+          <slot name="footer"></slot>
+          <slot></slot>
+        </div>`
+    })
+
+    var vm = new Vue({
+      el: '#app'
+    })
+
+  </script>
+</body>
+</html>
