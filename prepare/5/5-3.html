@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>5-3在Vue中同时使用过渡和动画</title>
+    <link rel="stylesheet" href="../animate.css">
+    <style>
+      .myfade-enter, .myfade-leave-to {
+        opacity: 0;
+      }
+      .myfade-enter-active, .myfade-leave-active {
+        transition: opacity 10s;
+      }
+    </style>
+    <script src="../vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <transition
+        name="myfade"
+        enter-active-class="animated swing myfade-enter-active"
+        leave-active-class="animated shake myfade-leave-active"
+        appear
+        appear-active-class="animated swing"
+        :duration="{enter: 500, leave: 1000}"
+      >
+        <div v-show="show">hello world</div>
+      </transition>
+      <button @click="handleClick">按钮</button>
+    </div>
+    <script>
+      // 1. 解决页面初始加载没有动画：appear, appear-active-class
+      // 2. 过渡transition时间和动画animation时间不一致，使用type="transition/animation"设置以哪种类型时间为准，vue就会以设置的动画类型为准
+      // 3. 可以自定义时间:duration="5000"，可以设置进入和移除的动画时间:duration="{enter:500,leave: 1000}"
+
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          show: true
+        },
+        methods: {
+          handleClick: function() {
+            this.show = !this.show;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
