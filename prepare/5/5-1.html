@@ -21,6 +21,10 @@
     <transition name="myfade">
       <div v-if="show">hello world</div>
     </transition>
+    <!-- v-if和v-show都可以显示动画 -->
+    <transition name="myfade">
+      <div v-show="show">hello world</div>
+    </transition>
     <button @click="handleClick">按钮</button>
   </div>
   <script>
