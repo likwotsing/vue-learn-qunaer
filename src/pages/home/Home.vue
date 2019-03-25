@@ -1,5 +1,8 @@
 <template>
-  <div>home</div>
+  <div>
+    <div>home</div>
+    <router-link to="/list">list</router-link>
+  </div>
 </template>
 
 <script>
