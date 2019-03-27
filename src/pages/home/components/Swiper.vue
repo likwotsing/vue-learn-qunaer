@@ -28,7 +28,7 @@ export default {
       }]
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -36,7 +36,7 @@ export default {
 .wrapper >>> .swiper-pagination-bullet-active
   background: #fff
 .wrapper
-  //防止图片加载慢，下面的内容顶上来 
+  //防止图片加载慢，下面的内容顶上来
   overflow: hidden
   width: 100%
   height: 0
