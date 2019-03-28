@@ -64,7 +64,9 @@ export default {
   },
   methods: {
     handleClickCity (city) {
-      this.$store.dispatch('changeCity', city)
+      // this.$store.dispatch('changeCity', city)
+      // 不是异步，可以直接commit触发mutations
+      this.$store.commit('changeCity', city)
       this.$router.push('/')
     }
   },

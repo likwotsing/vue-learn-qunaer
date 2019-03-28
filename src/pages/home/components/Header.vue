@@ -9,15 +9,25 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        {{this.$store.state.city}}<span class="iconfont arrow-icon">&#xe64a;</span>
+        <!-- 使用了mapState, 直接使用this.city即可 -->
+        {{this.city}}<span class="iconfont arrow-icon">&#xe64a;</span>
       </div>
     </router-link>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  computed: {
+    ...mapState(['city']),
+    ...mapGetters(['doubleCity'])
+  }
+  // computed: mapState({
+  //   city: state => state.city
+  // })
 }
 </script>
 
@@ -46,7 +56,8 @@ export default {
       border-radius: .1rem
     .header-right
       float: right
-      width: 1.2rem
+      min-width: 1.2rem
+      padding: 0 .1rem
       text-align: center
       color: #fff
       .arrow-icon

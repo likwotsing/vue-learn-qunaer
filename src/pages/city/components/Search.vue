@@ -10,14 +10,14 @@
     >
       <ul>
         <li
-          class="search-item"
+          class="search-item border-bottom"
           v-for="item of list"
           :key="item.id"
           @click="handleClickCity(item.name)"
         >
           {{item.name}}
         </li>
-        <li v-show="hasNoData" class="search-item" border-bottom>
+        <li v-show="hasNoData" class="search-item border-bottom">
           没有找到匹配数据
         </li>
       </ul>
@@ -46,7 +46,9 @@ export default {
   },
   methods: {
     handleClickCity (city) {
-      this.$store.dispatch('changeCity', city)
+      // this.$store.dispatch('changeCity', city)
+      // 不是异步，可以直接commit触发mutations
+      this.$store.commit('changeCity', city)
       this.$router.push('/')
     }
   },
