@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'CitySearch'
-  }
+export default {
+  name: 'CitySearch'
+}
 </script>
 
 <style lang="stylus" scoped>
