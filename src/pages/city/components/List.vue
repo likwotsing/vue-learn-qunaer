@@ -22,7 +22,17 @@
         </div>
       </div>
       <!-- of遍历对象，第2个元素是key值 -->
-      <div class="area" v-for="(item, key) of cities" :key="key">
+      <div
+        class="area"
+        v-for="(item, key) of cities"
+        :key="key"
+        :ref="key"
+      >
+      <!--
+        v-for里的ref和:ref的区别：
+        1、ref="key", 此时的key只是一个字符串，this.$refs只增加了一个引用, 即this.$refs.key, 是一个数组，数组的每一项就是对应的DOM元素
+        2、:ref="key", 此时的key是data里的一个变量，循环了多少次，this.$refs就增加了多少个引用，新增的每一个引用都是一个数组，数组的第1项是对应的DOM元素
+       -->
         <div class="title border-topbottom">{{key}}</div>
         <!-- 内层循环 -->
         <div class="item-list" v-for="innerItem of item" :key="innerItem.id">
@@ -39,10 +49,21 @@ export default {
   name: 'CityList',
   props: {
     cities: Object,
-    hotCities: Array
+    hotCities: Array,
+    letter: String
   },
   mounted () {
     this.scroll = new BScroll(this.$refs.wrapper)
+  },
+  watch: {
+    // 监听父元素传递的值
+    letter () {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0]
+        // 参数element需要是一个DOM元素或者选择器
+        this.scroll.scrollToElement(element)
+      }
+    }
   }
 }
 </script>

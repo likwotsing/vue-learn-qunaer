@@ -1,6 +1,17 @@
 <template>
   <ul class="list">
-    <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
+    <li
+      class="item"
+      v-for="item of letters"
+      :key="item"
+      :ref="item"
+      @click="handleLetterClick"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+    >
+      {{item}}
+    </li>
   </ul>
 </template>
 
@@ -9,6 +20,45 @@ export default {
   name: 'CityAlphabet',
   props: {
     cities: Object
+  },
+  data () {
+    return {
+      touchStatus: false
+    }
+  },
+  computed: {
+    letters () {
+      const letters = []
+      for (let i in this.cities) {
+        letters.push(i)
+      }
+      return letters
+    }
+  },
+  methods: {
+    handleLetterClick (e) {
+      this.$emit('change', e.target.innerText)
+    },
+    handleTouchStart () {
+      this.touchStatus = true
+    },
+    handleTouchMove (e) {
+      if (this.touchStatus) {
+        const startY = this.$refs['A'][0].offsetTop
+        // 79，是.list元素绝对定位的top值，即header和search的高度
+        const touchY = e.touches[0].clientY - 79
+        // 20，是每个字母的高度
+        const index = Math.floor((touchY - startY) / 20)
+        // console.log(this.letters[index])
+        // 用if判断是否超出范围
+        if (index >= 0 && index < this.letters.length) {
+          this.$emit('change', this.letters[index])
+        }
+      }
+    },
+    handleTouchEnd () {
+      this.touchStatus = false
+    }
   }
 }
 </script>
