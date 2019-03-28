@@ -10,9 +10,11 @@
     >
       <ul>
         <li
-         class="search-item"
-         v-for="item of list"
-         :key="item.id">
+          class="search-item"
+          v-for="item of list"
+          :key="item.id"
+          @click="handleClickCity(item.name)"
+        >
           {{item.name}}
         </li>
         <li v-show="hasNoData" class="search-item" border-bottom>
@@ -40,6 +42,12 @@ export default {
   computed: {
     hasNoData () {
       return !this.list.length
+    }
+  },
+  methods: {
+    handleClickCity (city) {
+      this.$store.dispatch('changeCity', city)
+      this.$router.push('/')
     }
   },
   watch: {
