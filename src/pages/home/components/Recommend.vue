@@ -2,7 +2,23 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom"
+      <!-- router-link，使用tag属性 -->
+      <router-link
+        tag="li"
+        class="item border-bottom"
+        v-for="item of list"
+        :key="item.id"
+        :to="'/detail/' + item.id"
+      >
+      <!-- :to是动态绑定，后面是js表达式。to后面是字符串 -->
+        <img class="item-img" :src="item.imgUrl" alt="">
+        <div class="item-info">
+          <p class="item-title">{{item.title}}</p>
+          <p class="item-desc">{{item.desc}}</p>
+          <button class="item-btn">查看详情</button>
+        </div>
+      </router-link>
+      <!-- <li class="item border-bottom"
         v-for="item of list"
         :key="item.id"
       >
@@ -12,7 +28,7 @@
           <p class="item-desc">{{item.desc}}</p>
           <button class="item-btn">查看详情</button>
         </div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
