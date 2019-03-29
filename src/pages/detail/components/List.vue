@@ -8,6 +8,7 @@
       <div class="item-title">
         <span class="item-title-icon"></span>{{item.title}}
       </div>
+      <!-- 递归组件 -->
       <div v-if="item.children" class="item-children">
         <detail-list :list="item.children"></detail-list>
       </div>
@@ -17,6 +18,7 @@
 
 <script>
 export default {
+  // 递归组件，根据name可以调用自身
   name: 'DetailList',
   props: {
     list: Array
