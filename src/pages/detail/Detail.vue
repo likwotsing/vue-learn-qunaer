@@ -3,6 +3,7 @@
     <detail-banner></detail-banner>
     <detail-header></detail-header>
     <detail-list :list="list"></detail-list>
+    <div class="content"></div>
   </div>
 </template>
 
@@ -37,28 +38,6 @@ export default {
         title: '儿童票'
       }, {
         title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
-      }, {
-        title: '特惠票'
       }]
     }
   }
@@ -66,5 +45,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+  .content
+    height: 50rem
 </style>
