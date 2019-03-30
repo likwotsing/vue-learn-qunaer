@@ -33,5 +33,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 2. 例如，在public里新建一个mock文件夹，里面有一个index.json文件，浏览器访问：http://localhost:8080/mock/index.json
 3. 配置代理proxy，参考vue.config.js
 
-### 去哪儿网
+### qunaer
 http://touch.piao.qunar.com/ 
+
+###
+待做：
+1、php服务器，联调
+2、真机测试有bug
+3、打包部署到服务器
+4、
