@@ -12,7 +12,7 @@ module.exports = {
       .set('styles', resolve('src/assets/styles'))
       .set('common', resolve('src/common'))
   },
-  publicPath: './',
+  publicPath: '/project',
   assetsDir: 'static',
   // webpack-dev-server
   devServer: {
