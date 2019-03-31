@@ -38,7 +38,7 @@ http://touch.piao.qunar.com/
 
 ###
 待做：
-1、php服务器，联调
-2、真机测试有bug
-3、打包部署到服务器
-4、
+1、php服务器，联调,已测试，xampp下的htdocs
+2、真机测试有bug，华为手机某些点击事件不生效
+3、打包部署到服务器，npm run build，修改vue.config,js里的publicPath，可以存放在服务器的某个文件夹下
+4、学习vue官网上的vue资源
