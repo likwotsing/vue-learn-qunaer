@@ -36,6 +36,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### qunaer
 http://touch.piao.qunar.com/ 
 
+### 使用server数据
+1、需要xampp，mock文件夹里的数据放到xampp里htdocs
+2、vue.config.js里修改proxy
+
+
 ###
 待做：
 1、php服务器，联调,已测试，xampp下的htdocs

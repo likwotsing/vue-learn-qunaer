@@ -12,7 +12,7 @@ module.exports = {
       .set('styles', resolve('src/assets/styles'))
       .set('common', resolve('src/common'))
   },
-  publicPath: '/project',
+  // publicPath: '/project',
   assetsDir: 'static',
   // webpack-dev-server
   devServer: {
@@ -22,21 +22,21 @@ module.exports = {
     //   })
     // },
     proxy: {
-      '/api': {
-        // 默认是80端口，可以省略
-        // target: 'http://localhost:80',
-        target: 'http://localhost',
-        pathRewrite: {
-          // 因为映射的目录相同，下面的设置可以省略
-          '^/api': '/api'
-        }
-      }
       // '/api': {
-      //   target: 'http://localhost:8080',
+      //   // 默认是80端口，可以省略
+      //   // target: 'http://localhost:80',
+      //   target: 'http://localhost',
       //   pathRewrite: {
-      //     '^/api': '/mock'
+      //     // 因为映射的目录相同，下面的设置可以省略
+      //     '^/api': '/api'
       //   }
       // }
+      '/api': {
+        target: 'http://localhost:8080',
+        pathRewrite: {
+          '^/api': '/mock'
+        }
+      }
     }
   }
 }
